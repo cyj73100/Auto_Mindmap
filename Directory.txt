@@ -1,0 +1,73 @@
+Diagram/
+├─ README.md
+├─ .gitignore
+├─ .env.example
+├─ docker-compose.yml
+├─ Makefile
+├─ apps/
+│  ├─ web/                             # React + TypeScript
+│  │  ├─ Dockerfile
+│  │  ├─ package.json
+│  │  ├─ tsconfig.json
+│  │  ├─ vite.config.ts
+│  │  ├─ index.html
+│  │  ├─ public/
+│  │  ├─ src/
+│  │  │  ├─ main.tsx
+│  │  │  ├─ app/router.tsx             # /, /map, /s/:token
+│  │  │  ├─ pages/HomePage.tsx
+│  │  │  ├─ pages/MapEditorPage.tsx
+│  │  │  ├─ pages/SharedMapPage.tsx
+│  │  │  ├─ features/generate/api.ts
+│  │  │  ├─ features/generate/types.ts
+│  │  │  ├─ features/map-editor/MapCanvas.tsx
+│  │  │  ├─ features/map-editor/nodeOps.ts
+│  │  │  ├─ features/share/shareApi.ts
+│  │  │  ├─ features/export/pngExport.ts
+│  │  │  ├─ lib/storage/indexeddb.ts   # 로컬 저장/복구
+│  │  │  ├─ lib/http/client.ts
+│  │  │  ├─ analytics/events.ts
+│  │  │  ├─ ui/DisclaimerBanner.tsx    # 고정 안내 문구
+│  │  │  └─ styles/
+│  │  └─ tests/
+│  │     ├─ unit/
+│  │     └─ e2e/                        # 핵심 사용자 여정
+│  └─ api/                              # FastAPI
+│     ├─ Dockerfile
+│     ├─ pyproject.toml
+│     ├─ alembic.ini
+│     ├─ app/
+│     │  ├─ main.py
+│     │  ├─ api/v1/routes/mindmaps.py   # generate/share/get-share
+│     │  ├─ schemas/mindmap.py
+│     │  ├─ schemas/error.py
+│     │  ├─ services/llm_client.py
+│     │  ├─ services/mindmap_normalizer.py
+│     │  ├─ services/share_service.py
+│     │  ├─ repositories/share_repo.py
+│     │  ├─ prompts/system_prompt.txt
+│     │  ├─ core/config.py
+│     │  ├─ core/logging.py             # 민감정보 마스킹
+│     │  ├─ middleware/rate_limit.py
+│     │  ├─ middleware/security_headers.py
+│     │  └─ db/
+│     │     ├─ models.py
+│     │     └─ session.py
+│     ├─ migrations/
+│     └─ tests/
+│        ├─ unit/
+│        └─ integration/
+├─ contracts/
+│  ├─ openapi.yaml                      # API 계약 단일 소스
+│  └─ examples/
+│     ├─ generate.request.json
+│     └─ generate.response.json
+├─ docs/
+│  ├─ event-spec.md                     # generate/edit/share/export 이벤트 정의
+│  ├─ security-policy.md                # TTL 7일, 삭제 정책, 경고 문구
+│  ├─ qa-scenarios.md                   # plan.md 테스트 시나리오
+│  └─ incident-playbook.md
+└─ scripts/
+   ├─ dev-up.ps1
+   ├─ dev-down.ps1
+   └─ seed-demo-data.py
